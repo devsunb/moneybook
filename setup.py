@@ -12,5 +12,5 @@ setup(
     packages=find_packages(exclude=['test']),
     setup_requires=[],
     zip_safe=False,
-    install_requires=['argparse', 'openpyxl']
+    install_requires=['argparse', 'openpyxl', 'requests', 'furl', 'numpy']
 )

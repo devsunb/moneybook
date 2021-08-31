@@ -5,7 +5,7 @@ from moneybook.moneybook import Moneybook
 
 class TestMoneybook(unittest.TestCase):
     def setUp(self):
-        self.m = Moneybook('http://192.168.137.94:8888/')
+        self.m = Moneybook('http://10.255.255.4:8888/')
 
     def test_get_init_data(self):
         print(self.m.get_init_data())

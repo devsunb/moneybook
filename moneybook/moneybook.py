@@ -1,17 +1,17 @@
 from datetime import datetime
 
 import requests
-from yarl import URL
+from furl import furl
 
 from moneybook.util import xml_tree
 
 
 class Moneybook:
     def __init__(self, base_url):
-        self.base_url = URL(base_url)
+        self.base_url = furl(base_url)
 
     def get_init_data(self):
-        url = self.base_url.with_path('/moneyBook/getInitData')
+        url = self.base_url.copy().set(path='/moneyBook/getInitData')
         return requests.get(url).text
 
     def get_data_by_period(self):
@@ -21,7 +21,7 @@ class Moneybook:
             'mbid': '1',
             'assetId': ''
         }
-        url = self.base_url.with_path('/moneyBook/getDataByPeriod').with_query(query_data)
+        url = self.base_url.copy().set(path='/moneyBook/getDataByPeriod').add(args=query_data)
         return self.parse_data_by_period(requests.get(url).text)
 
     @staticmethod
